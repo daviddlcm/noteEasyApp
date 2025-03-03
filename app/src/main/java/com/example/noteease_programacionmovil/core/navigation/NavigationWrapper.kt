@@ -15,7 +15,7 @@ import com.example.noteease_programacionmovil.register.presentation.RegisterScre
 fun NavigationWrapper(){
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = MainPage){
-        composable<Register> { RegisterScreen(viewModel()) }
+        composable<Register> { RegisterScreen(viewModel(),navController,MainPage) }
         composable<MainPage> { MainPageScreen(navController,Register,Login) }
         composable<Login>{ LoginScreen(viewModel(),navController,Home) }
         composable<Home>{ HomeScreen(viewModel(),navController,MainPage) }

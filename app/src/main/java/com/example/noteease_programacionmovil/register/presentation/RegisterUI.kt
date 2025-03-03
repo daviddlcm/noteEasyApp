@@ -16,6 +16,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
@@ -32,12 +33,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavController
+import com.example.noteease_programacionmovil.core.navigation.MainPage
 import com.example.noteease_programacionmovil.register.data.model.CreateUserRequest
 import kotlinx.coroutines.launch
 
 
 @Composable
-fun RegisterScreen(viewModel: RegisterViewModel) {
+fun RegisterScreen(viewModel: RegisterViewModel,navController: NavController,nagivateToMainPage:MainPage) {
     val email: String by viewModel.email.observeAsState("")
     val name: String by viewModel.nameUser.observeAsState("")
     val lastName: String by viewModel.lastName.observeAsState("")
@@ -46,6 +49,13 @@ fun RegisterScreen(viewModel: RegisterViewModel) {
     val error: String by viewModel.error.observeAsState("")
     val register: String by viewModel.register.observeAsState("")
     var isPasswordVisible by remember { mutableStateOf(false) }
+    val successRegister by viewModel.successRegister.observeAsState(false)
+
+    LaunchedEffect(successRegister) {
+        if(successRegister){
+            navController.navigate(nagivateToMainPage)
+        }
+    }
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -138,8 +148,8 @@ fun RegisterScreen(viewModel: RegisterViewModel) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    RegisterScreen(viewModel = RegisterViewModel())
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun GreetingPreview() {
+//    RegisterScreen(viewModel = RegisterViewModel())
+//}

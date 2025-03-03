@@ -21,11 +21,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewModelScope
+import com.example.noteease_programacionmovil.addNote.domain.VibrationUseCase
 import com.example.noteease_programacionmovil.home.presentation.HomeViewModel
 import kotlinx.coroutines.launch
 
@@ -33,9 +35,12 @@ import kotlinx.coroutines.launch
 @Composable
 fun AddNoteScreen(addNoteViewModel: AddNoteViewModel,homeViewModel: HomeViewModel){
     val noteAdded by addNoteViewModel.success.observeAsState(false)
+    val context = LocalContext.current
+    val vibrationUseCase = VibrationUseCase(context)
 
     LaunchedEffect(noteAdded) {
         if (noteAdded){
+            vibrationUseCase.vibrate()
             homeViewModel.refreshNotes()
             addNoteViewModel.resetNoteAddedEvent()
         }

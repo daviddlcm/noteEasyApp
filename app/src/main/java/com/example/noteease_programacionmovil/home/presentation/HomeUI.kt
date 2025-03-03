@@ -46,11 +46,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.noteease_programacionmovil.addNote.domain.VibrationUseCase
 import com.example.noteease_programacionmovil.addNote.presentation.AddNoteScreen
 import com.example.noteease_programacionmovil.addNote.presentation.AddNoteViewModel
 import com.example.noteease_programacionmovil.core.navigation.MainPage
@@ -125,6 +127,7 @@ fun HomeScreen(viewModel: HomeViewModel,navController: NavController,navigateToM
 
 @Composable
 fun Home(modifier: Modifier,notes: List<NoteDTO>,selectedIndex:Int,homeViewModel: HomeViewModel,navController: NavController) {
+   val context = LocalContext.current
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -136,7 +139,7 @@ fun Home(modifier: Modifier,notes: List<NoteDTO>,selectedIndex:Int,homeViewModel
                     CardNote(item.id_note,item.title,item.content,item.created_at,navController)
                 }
             }
-            1-> AddNoteScreen(AddNoteViewModel(),homeViewModel)
+            1-> AddNoteScreen(AddNoteViewModel(vibrationUseCase = VibrationUseCase(context)),homeViewModel)
         }
     }
 }

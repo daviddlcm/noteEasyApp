@@ -17,6 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitHelper {
     private lateinit var appContext: Context
     private val BASE_URL = "http://10.0.2.2:80/"
+    //private val BASE_URL = "http://172.20.10.4:80/"
 
     private val tokenDataStore by lazy { TokenDataStore(appContext) }
 
@@ -60,7 +61,7 @@ object RetrofitHelper {
     }
 
     fun initialize(context: Context) {
-        appContext = context.applicationContext // Usar siempre el contexto de la aplicación
+        appContext = context.applicationContext
     }
 
 

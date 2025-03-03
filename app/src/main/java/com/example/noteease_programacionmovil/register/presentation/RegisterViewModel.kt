@@ -36,6 +36,9 @@ class RegisterViewModel(): ViewModel(){
     private var _register = MutableLiveData<String>("")
     val register : LiveData<String> = _register
 
+    private var _successRegister = MutableLiveData<Boolean>(false)
+    val successRegister: LiveData<Boolean> = _successRegister
+
 
     fun onChangeEmail(Email : String) {
         _email.value = Email
@@ -74,6 +77,7 @@ class RegisterViewModel(): ViewModel(){
             data ->(
                     if(data.success){
                         _register.value = "se registro correctamente token: ${data.token}"
+                        _successRegister.value=true
                     }
                     else{
                         _register.value = "Ocurrio un error al registrarte"

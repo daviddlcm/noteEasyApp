@@ -6,10 +6,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.noteease_programacionmovil.addNote.data.model.CreateNoteRequest
 import com.example.noteease_programacionmovil.addNote.domain.CreateNoteUseCase
+import com.example.noteease_programacionmovil.addNote.domain.VibrationUseCase
 
-class AddNoteViewModel():ViewModel() {
+class AddNoteViewModel(private val vibrationUseCase: VibrationUseCase):ViewModel() {
 
     private val createNoteUseCase = CreateNoteUseCase()
+
+
 
     private val _title = MutableLiveData<String>()
     val title :LiveData<String> = _title
@@ -40,6 +43,7 @@ class AddNoteViewModel():ViewModel() {
                 data ->(
                 if(data.success){
                     _success.value = data.success
+                    vibrationUseCase.vibrate()
                     _error.value=""
                 }
                 else{

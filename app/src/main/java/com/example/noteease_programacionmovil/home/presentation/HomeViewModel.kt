@@ -16,7 +16,8 @@ import com.example.noteease_programacionmovil.core.dataStore.TokenDataStore
 
 class HomeViewModel(application: Application):AndroidViewModel(application) {
 
-    private var tokenDataStore = TokenDataStore(application)
+    //private val tokenDataStore by lazy {TokenDataStore(application)}
+    private val tokenDataStore by lazy { TokenDataStore(application) }
 
     private val repository = GetNotesRepository()
     private var _notes = MutableLiveData<List<NoteDTO>>(emptyList())
@@ -28,7 +29,7 @@ class HomeViewModel(application: Application):AndroidViewModel(application) {
 
 
     init{
-        tokenDataStore = TokenDataStore(application)
+
         viewModelScope.launch {
             onGetNotes()
         }
