@@ -50,11 +50,11 @@ class LoginViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
-    private suspend fun verifyToken(){
-        tokenDataStore.token.collect{ savedToken ->
-            Log.d("TokenVerification", "Token guardado: $savedToken")
-        }
-    }
+//    private suspend fun verifyToken(){
+//        tokenDataStore.token.collect{ savedToken ->
+//            Log.d("TokenVerification", "Token guardado: $savedToken")
+//        }
+//    }
 
 
 

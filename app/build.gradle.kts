@@ -68,4 +68,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
     implementation("androidx.datastore:datastore-preferences:1.1.2")
+
+    debugImplementation ("com.squareup.leakcanary:leakcanary-android:2.14")
 }

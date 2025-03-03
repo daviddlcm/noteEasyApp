@@ -10,7 +10,7 @@ class AuthInterceptor(private val tokenProvider: suspend () -> String?): Interce
         val request = chain.request().newBuilder()
 
         if(!token.isNullOrEmpty()){
-            request.addHeader("Authorization","Bearer $token")
+            request.addHeader("token",token)
         }
         return chain.proceed(request.build())
     }

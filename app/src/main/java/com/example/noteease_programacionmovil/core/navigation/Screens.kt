@@ -10,3 +10,5 @@ object MainPage
 object Register
 @Serializable
 object Home
+@Serializable
+object Note

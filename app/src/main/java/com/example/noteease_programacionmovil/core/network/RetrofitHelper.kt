@@ -2,9 +2,12 @@ package com.example.noteease_programacionmovil.core.network
 
 import android.annotation.SuppressLint
 import android.content.Context
+import com.example.noteease_programacionmovil.addNote.data.datasource.AddNoteService
 import com.example.noteease_programacionmovil.core.dataStore.AuthInterceptor
 import com.example.noteease_programacionmovil.core.dataStore.TokenDataStore
+import com.example.noteease_programacionmovil.home.data.datasource.GetNotesService
 import com.example.noteease_programacionmovil.login.data.datasource.LoginService
+import com.example.noteease_programacionmovil.note.data.datasource.NoteService
 import com.example.noteease_programacionmovil.register.data.datasource.RegisterService
 import kotlinx.coroutines.flow.firstOrNull
 import okhttp3.OkHttpClient
@@ -46,6 +49,16 @@ object RetrofitHelper {
     val loginService: LoginService by lazy {
         retrofit.create(LoginService::class.java)
     }
+    val addNote:AddNoteService by lazy{
+        retrofit.create(AddNoteService::class.java)
+    }
+    val getNotesService: GetNotesService by lazy {
+        retrofit.create(GetNotesService::class.java)
+    }
+    val getNoteById: NoteService by lazy{
+        retrofit.create(NoteService::class.java)
+    }
+
     fun initialize(context: Context) {
         appContext = context.applicationContext // Usar siempre el contexto de la aplicación
     }
